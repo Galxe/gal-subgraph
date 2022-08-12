@@ -1,0 +1,21 @@
+{
+  "name": "gal",
+  "license": "Apache-2.0",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "prepare:mainnet": "mustache config/mainnet.json template.yaml > subgraph.yaml",
+    "prepare:bsc": "mustache config/bsc.json template.yaml > subgraph.yaml",
+    "deploy:mainnet": "graph deploy --node https://api.thegraph.com/deploy/ projectgalaxyhq/gal-mainnet",
+    "deploy:bsc": "graph deploy --node https://api.thegraph.com/deploy/ projectgalaxyhq/gal-bsc",
+    "create-local": "graph create --node http://localhost:8020/ projectgalaxyhq/gal",
+    "remove-local": "graph remove --node http://localhost:8020/ projectgalaxyhq/gal",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 projectgalaxyhq/gal"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.27.0",
+    "@graphprotocol/graph-ts": "^0.24.1",
+    "assemblyscript": "^0.19.20",
+    "mustache": "^4.2.0"
+  }
+}

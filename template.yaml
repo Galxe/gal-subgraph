@@ -1,0 +1,27 @@
+specVersion: 0.0.4
+description: GAL Subgraph
+repository: https://github.com/ProjectGalaxyHQ/gal-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: GAL
+    network: {{ network }}
+    source:
+      address: '{{ address }}'
+      startBlock: {{ block }}
+      abi: GAL
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/gal.ts
+      entities:
+        - Transaction
+        - User
+      abis:
+        - name: GAL
+          file: ./abis/gal.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: onTransfer
